@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JobConnect - Login / Register</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-box">
+    <h2>JobConnect</h2>
+
+    <div class="tabs">
+      <div class="tab active" id="loginTab" onclick="switchTab('login')">Login</div>
+      <div class="tab" id="registerTab" onclick="switchTab('register')">Register</div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm">
+      <label>Email</label>
+      <input type="email" id="loginEmail" required />
+
+      <label>Password</label>
+      <input type="password" id="loginPassword" required />
+
+      <button type="submit" class="btn btn-primary submit-btn">Login</button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm" class="hidden">
+      <label>I am a...</label>
+      <select id="registerRole" required>
+        <option value="Job Seeker">Job Seeker</option>
+        <option value="Recruiter">Recruiter</option>
+      </select>
+
+      <label>Full Name</label>
+      <input type="text" id="registerName" required />
+
+      <label>Email</label>
+      <input type="email" id="registerEmail" required />
+
+      <label>Password</label>
+      <input type="password" id="registerPassword" minlength="6" required />
+
+      <div id="companyField" class="hidden">
+        <label>Company Name</label>
+        <input type="text" id="registerCompany" />
+      </div>
+
+      <button type="submit" class="btn btn-success submit-btn">Create Account</button>
+    </form>
+
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="success-msg" id="successMsg"></div>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+</body>
+</html>

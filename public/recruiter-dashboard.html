@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JobConnect - Recruiter Dashboard</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="navbar">
+  <h1>JobConnect</h1>
+  <div class="user-info">
+    <span id="welcomeText"></span>
+    <button class="btn btn-danger btn-small" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="dash-tabs">
+    <button class="dash-tab-btn active" id="tabPostBtn" onclick="switchDashTab('post')">Post a Job</button>
+    <button class="dash-tab-btn" id="tabMyJobsBtn" onclick="switchDashTab('myjobs')">My Posted Jobs</button>
+    <button class="dash-tab-btn" id="tabCompanyBtn" onclick="switchDashTab('company')">Company Profile</button>
+  </div>
+
+  <!-- POST A JOB TAB -->
+  <div id="postTab">
+    <div class="card">
+      <h3>Post a New Job</h3>
+      <form id="jobForm">
+        <label>Job Title</label>
+        <input type="text" id="jobTitle" required />
+
+        <label>Description</label>
+        <textarea id="jobDescription" required></textarea>
+
+        <div class="form-row">
+          <div>
+            <label>Location</label>
+            <input type="text" id="jobLocation" required />
+          </div>
+          <div>
+            <label>Job Type</label>
+            <select id="jobType" required>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Internship">Internship</option>
+              <option value="Contract">Contract</option>
+              <option value="Remote">Remote</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label>Experience Required (years)</label>
+            <input type="number" id="jobExperience" min="0" value="0" />
+          </div>
+          <div>
+            <label>Salary Range</label>
+            <input type="text" id="jobSalary" placeholder="e.g. 6-10 LPA" />
+          </div>
+        </div>
+
+        <label>Required Skills (comma-separated)</label>
+        <input type="text" id="jobSkills" placeholder="e.g. Node.js, MongoDB, REST APIs" />
+
+        <button type="submit" class="btn btn-success submit-btn">Post Job</button>
+      </form>
+      <div class="success-msg" id="postSuccess"></div>
+      <div class="error-msg" id="postError"></div>
+    </div>
+  </div>
+
+  <!-- MY POSTED JOBS TAB -->
+  <div id="myJobsTab" class="hidden">
+    <div id="myJobsList"></div>
+
+    <!-- Applicant manager modal-like panel -->
+    <div class="card hidden" id="applicantsPanel">
+      <h3 id="applicantsJobTitle"></h3>
+      <table>
+        <thead>
+          <tr><th>Applicant</th><th>Email</th><th>Applied On</th><th>Status</th></tr>
+        </thead>
+        <tbody id="applicantsTableBody"></tbody>
+      </table>
+      <div id="applicantsEmpty" class="empty-state hidden">No applicants yet for this job.</div>
+      <br/>
+      <button class="btn btn-secondary btn-small" onclick="closeApplicantsPanel()">Close</button>
+    </div>
+  </div>
+
+  <!-- COMPANY PROFILE TAB -->
+  <div id="companyTab" class="hidden">
+    <div class="card">
+      <h3>Company Profile</h3>
+      <p style="color:#6b7280; font-size: 13px; margin-top: -8px;">
+        This is what job seekers see attached to your job postings.
+      </p>
+      <form id="companyForm">
+        <label>Company Name</label>
+        <input type="text" id="companyName" required />
+
+        <label>Company Description</label>
+        <textarea id="companyDescription" placeholder="What does your company do?"></textarea>
+
+        <div class="form-row">
+          <div>
+            <label>Website</label>
+            <input type="text" id="companyWebsite" placeholder="https://yourcompany.com" />
+          </div>
+          <div>
+            <label>Headquarters Location</label>
+            <input type="text" id="companyLocation" placeholder="e.g. Bangalore, India" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success submit-btn">Save Company Profile</button>
+      </form>
+      <div class="success-msg" id="companySuccess"></div>
+      <div class="error-msg" id="companyError"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/recruiter.js"></script>
+</body>
+</html>

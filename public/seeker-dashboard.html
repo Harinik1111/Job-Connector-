@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JobConnect - Job Seeker Dashboard</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="navbar">
+  <h1>JobConnect</h1>
+  <div class="user-info">
+    <span id="welcomeText"></span>
+    <button class="btn btn-danger btn-small" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="dash-tabs">
+    <button class="dash-tab-btn active" id="tabJobsBtn" onclick="switchDashTab('jobs')">Search Jobs</button>
+    <button class="dash-tab-btn" id="tabAppsBtn" onclick="switchDashTab('apps')">My Applications</button>
+    <button class="dash-tab-btn" id="tabProfileBtn" onclick="switchDashTab('profile')">My Profile</button>
+  </div>
+
+  <!-- SEARCH / FILTER JOBS TAB -->
+  <div id="jobsTab">
+    <div class="card">
+      <div class="filter-bar">
+        <input type="text" id="filterTitle" placeholder="Search by job title..." />
+        <input type="text" id="filterLocation" placeholder="Location..." />
+        <select id="filterType">
+          <option value="">All Job Types</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Internship">Internship</option>
+          <option value="Contract">Contract</option>
+          <option value="Remote">Remote</option>
+        </select>
+        <input type="text" id="filterSkill" placeholder="Skill (e.g. react)..." />
+        <input type="number" id="filterExperience" min="0" placeholder="Your experience (yrs)..." />
+        <button class="btn btn-primary" onclick="loadJobs()">Search</button>
+      </div>
+    </div>
+    <div id="jobsList"></div>
+  </div>
+
+  <!-- MY APPLICATIONS TAB -->
+  <div id="appsTab" class="hidden">
+    <div class="card">
+      <h3>Application History</h3>
+      <table id="appsTable">
+        <thead>
+          <tr><th>Job Title</th><th>Company</th><th>Location</th><th>Applied On</th><th>Status</th></tr>
+        </thead>
+        <tbody id="appsTableBody"></tbody>
+      </table>
+      <div id="appsEmpty" class="empty-state hidden">No applications yet - go apply to some jobs!</div>
+    </div>
+  </div>
+
+  <!-- PROFILE TAB -->
+  <div id="profileTab" class="hidden">
+    <div class="card">
+      <h3>My Profile</h3>
+      <form id="profileForm">
+        <label>Phone Number</label>
+        <input type="tel" id="profPhone" placeholder="e.g. 9876543210" />
+
+        <label>Highest Qualification</label>
+        <input type="text" id="profQualification" placeholder="e.g. B.Tech in Computer Science" />
+
+        <label>Years of Experience</label>
+        <input type="number" id="profExperience" min="0" value="0" />
+
+        <label>Skills (comma-separated)</label>
+        <input type="text" id="profSkills" placeholder="e.g. JavaScript, React, MongoDB" />
+
+        <label>Resume URL</label>
+        <input type="text" id="profResume" placeholder="https://link-to-your-resume.pdf" />
+
+        <button type="submit" class="btn btn-success submit-btn">Save Profile</button>
+      </form>
+      <div class="success-msg" id="profileSuccess"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/seeker.js"></script>
+</body>
+</html>
